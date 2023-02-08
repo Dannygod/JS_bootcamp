@@ -1,8 +1,8 @@
 # JS_gittest
 
-- This is DannyGod testing Github place.
+- This is DannyGod testing GitHub place.
 - Also, I will add some stuffs on this respository.
-- Any Problems do not contact me. . . (joking)
+- Any problems do not contact me. . . (joking)
 
 ## <譯>
 
