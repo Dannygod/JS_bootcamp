@@ -16,6 +16,6 @@ function isAllUpperCase(str) {
     console.log(false);
   }
 }
-isAllUpperCase("ABCD");
-isAllUpperCase("");
-isAllUpperCase("ABCDABCDEFGHIJKLm");
+isAllUpperCase("ABCD"); // returns true
+isAllUpperCase(""); // returns false
+isAllUpperCase("ABCDEFGHIJKLm"); // returns false

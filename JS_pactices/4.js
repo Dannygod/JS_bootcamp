@@ -9,6 +9,6 @@ function isUpperCase(str) {
     console.log(false);
   }
 }
-isUpperCase("ABCD");
-isUpperCase("");
-isUpperCase("aBCD");
+isUpperCase("ABCD"); // returns true
+isUpperCase(""); // returns false
+isUpperCase("aBCD"); // returns false
