@@ -9,8 +9,13 @@ function position(str) {
       break;
     }
   }
-  //  process.stdout.write(str[sum]);
-  process.stdout.write(sum);
+
+  if (sum === -1) {
+    console.log(sum);
+  } else {
+    console.log(str[sum]);
+    console.log(sum);
+  }
   return;
 }
 
