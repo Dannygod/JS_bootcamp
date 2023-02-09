@@ -1,1 +1,1 @@
-toUpperCase
+a.length - 1
