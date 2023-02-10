@@ -12,4 +12,4 @@ function intersection(a1, a2) {
   return a3;
 }
 console.log(intersection([1, 3, 4, 6, 10], [5, 11, 4, 3, 100, 144, 0])); // returns [3, 4]
-console.log(intersection([0], [5, 11, 4, 3, 100, 44])); // returns [3, 4]
+console.log(intersection([0, 1], [5, 11, 4, 3, 100, 44])); // returns [3, 4]
