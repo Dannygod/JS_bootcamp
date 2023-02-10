@@ -1,5 +1,5 @@
-let myH1 = document.getElementById(number);
-let myP = document.getElementById(paragraph);
-
+let myH1 = window.document.getElementById(number);
+let myP = window.document.getElementById(paragraph);
+console.log(window);
 console.log(myH1);
 console.log(myP);
