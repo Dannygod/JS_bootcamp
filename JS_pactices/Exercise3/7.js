@@ -16,3 +16,4 @@ inversePyramid(4);
 //  *****
 //   ***
 //    *
+inversePyramid(10);
