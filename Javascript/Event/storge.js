@@ -1,11 +1,20 @@
 localStorage.setItem("name", "Danny");
 localStorage.setItem("age", "18");
-
+// array
 let myFriends = ["Terry", "May", "Zoe"];
-localStorage.setItem("friend", myFriends);
+localStorage.setItem("friend", JSON.stringify(myFriends));
+let getFriend = JSON.parse(localStorage.getItem("friend"));
 
-let myName = localStorage.getItem("name");
-console.log(myName);
+// object
+let myObject = {
+  name: "Danny",
+  age: 16,
+};
 
-console.log(typeof myFriends);
-console.log(typeof localStorage.friend);
+localStorage.setItem("Object", JSON.stringify(myObject));
+let getObject = JSON.parse(localStorage.getItem("Object"));
+
+console.log(myObject);
+console.log(getObject);
+
+console.log(getFriend);
