@@ -1,6 +1,9 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+// serving static file
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
     console.log(__dirname, "index.html");
     res.sendFile(path.join(__dirname, "index.html")); // Use path.join to construct the file path
