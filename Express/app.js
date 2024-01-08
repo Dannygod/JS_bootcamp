@@ -5,7 +5,8 @@
 const express = require("express");
 const app = express();
 app.get("/", (req, res) => {
-    res.send("網頁載入成功");
+    console.log(req);
+    res.send("網頁");
     res.end();
 })
 
