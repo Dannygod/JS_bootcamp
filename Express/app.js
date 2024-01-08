@@ -20,14 +20,20 @@ app.get("/fruit/:kindOfFruit", (req, res) => {
     const fruitList = ["apple", "banana", "guava"]
     fruitList.forEach(i => {
         if (kindOfFruit === i){
-            res.send(`Fruit you are looking for: ${kindOfFruit}`);
+            res.send(`你是不是在找: ${kindOfFruit}`);
         }
     });
-    res.send(`Fruit you are looking for: Not found`);
+    // res.send(`fruit`);
 });
+app.get("/fruit", (req, res) => {
+    res.sendFile(path.join(__dirname, "fruit.html")); // Use path.join to construct the file path
+});
+
 app.get("/:errorPage", (req, res) => {
-    console.log(req.params);
-    res.send(`The page ${req.params.errorPage} is not exist!`);
+    // let {errorPage} = req.params;
+    // console.log(req.params);
+    // res.send(`The page ${req.params.errorPage} is not exist!`);
+    res.sendFile(path.join(__dirname, "errorPage.html")); // Use path.join to construct the file path
 }); // error page
 app.listen(9288, () => {
     console.log("App is running at https://localhost:9288");

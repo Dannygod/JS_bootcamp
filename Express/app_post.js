@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: true})); //middleware
 
 app.get("/", (req, res) => {
     console.log(__dirname, "index.html");
-    res.sendFile(path.join(__dirname, "index.html")); // Use path.join to construct the file path
+    res.sendFile(path.join(__dirname, "form.html")); // Use path.join to construct the file path
 });
 app.post("/formHandling", (req, res) => {
     const {username, userage} = req.body;
