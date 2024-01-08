@@ -6,3 +6,4 @@ console.log(think({
   eyes: 'pp',
   tongue: ';;',
 }));
+
