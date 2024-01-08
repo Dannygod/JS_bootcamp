@@ -11,6 +11,7 @@ app.get("/p1", (req, res) => {
 app.get("/p2", (req, res) => {
     res.send("網頁2");
 });
+// routing for pattern
 app.get("/fruit/:kindOfFruit", (req, res) => {
     const {kindOfFruit} = req.params;
     const fruitList = ["apple", "banana", "guava"]
