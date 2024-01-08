@@ -1,12 +1,9 @@
-// const sayHi = require("./test");
-// // console.log(sayHi);
-// console.log(sayHi);
-
 const express = require("express");
 const app = express();
 app.get("/", (req, res) => {
-    console.log(req);
-    res.send("網頁");
+    // console.log(req);
+    res.send("網頁 首頁");
+    // res.send("The First page");
     res.end();
 })
 
