@@ -1,11 +1,9 @@
-# JS_gittest
+# JS Bootcamp
 
-- This is DannyGod testing GitHub place.
-- Also, I will add some stuffs on this respository.
+- This is DannyGod Javascript bootcamp.
 - Any problems do not contact me. . . (joking)
 
 ## <譯>
 
-- 這裡是 DannyGod 的測試區。
-- 也是我將來丟東西上傳的工作區。
+- 這裡是 Javascript / HTML 的訓練營。
 - 如有任何問題，不要聯絡我 ( இ௰இ )
