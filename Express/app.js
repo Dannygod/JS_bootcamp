@@ -20,6 +20,7 @@ app.get("/fruit/:kindOfFruit", (req, res) => {
     const fruitList = ["apple", "banana", "guava"]
     fruitList.forEach(i => {
         if (kindOfFruit === i){
+            let fruitHTML = document.querySelector(".showFruit");
             res.send(`你是不是在找: ${kindOfFruit}`);
         }
     });
@@ -33,6 +34,7 @@ app.get("/:errorPage", (req, res) => {
     // let {errorPage} = req.params;
     // console.log(req.params);
     // res.send(`The page ${req.params.errorPage} is not exist!`);
+    res.status(404);
     res.sendFile(path.join(__dirname, "errorPage.html")); // Use path.join to construct the file path
 }); // error page
 app.listen(9288, () => {
