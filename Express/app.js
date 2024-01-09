@@ -20,11 +20,11 @@ app.get("/fruit/:kindOfFruit", (req, res) => {
     const fruitList = ["apple", "banana", "guava"]
     fruitList.forEach(i => {
         if (kindOfFruit === i){
-            let fruitHTML = document.querySelector(".showFruit");
+            // let fruitHTML = document.querySelector(".showFruit");
+            // fruitHTML.innerHTML(`<h4>你是不是在找: ${kindOfFruit}</h4>`);
             res.send(`你是不是在找: ${kindOfFruit}`);
         }
     });
-    // res.send(`fruit`);
 });
 app.get("/fruit", (req, res) => {
     res.sendFile(path.join(__dirname, "fruit.html")); // Use path.join to construct the file path
