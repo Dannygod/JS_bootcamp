@@ -4,11 +4,11 @@ const app = express();
 app.use(express.static("public"));
 
 app.get('/', (req, res) => {
-    res.send("This is home page");
+    res.render('index.ejs');
 });
 app.get('/:name', (req, res) => {
     const { name } = req.params;
-    res.render('index.ejs', { name });
+    res.render('person.ejs', { name: name }); // {name} is same as {name:name}
 });
 const port = 6060;
 app.listen(port, () => {
