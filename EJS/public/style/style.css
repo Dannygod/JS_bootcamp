@@ -8,6 +8,7 @@ body {
   background: rgb(78, 59, 80);
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 1.5rem 0 0 0;
 }
 body a {
   text-decoration: none;
@@ -21,6 +22,12 @@ body div.block {
 }
 body div.block div.blockFlex {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+body div.block div.blockFlex > * {
+  margin: 0.5rem 0;
+}
+body div.block div.blockFlex form > * {
+  margin: 0.5rem 0;
 }/*# sourceMappingURL=style.css.map */
