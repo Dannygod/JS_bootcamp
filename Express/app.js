@@ -29,6 +29,10 @@ app.get("/fruit/:kindOfFruit", (req, res) => {
 app.get("/fruit", (req, res) => {
     res.sendFile(path.join(__dirname, "fruit.html")); // Use path.join to construct the file path
 });
+app.get("/mike", (req, res) => {
+    res.status(302);
+    res.sendFile(path.join(__dirname, "moved.html")); // Use path.join to construct the file path
+});
 
 app.get("/:errorPage", (req, res) => {
     // let {errorPage} = req.params;
