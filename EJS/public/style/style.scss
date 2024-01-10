@@ -8,33 +8,68 @@ body {
     background: rgb(78, 59, 80);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    // padding: 0.5rem 0;
+    text-decoration: none;
+    color: rgb(244, 254, 152);
+}
+
+div.block {
     margin: 1.5rem 0 0 0;
+    width: 100%;
+    // height: 100vh;
+    display: flex;
+    justify-content: center;
 
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    div.block {
-        width: 100%;
-        height: 100vh;
+    div.blockFlex {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
 
-        div.blockFlex {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        &>* {
+            margin: 0.5rem 0;
+        }
 
+        form {
             &>* {
                 margin: 0.5rem 0;
             }
-
-            form {
-                &>* {
-                    margin: 0.5rem 0;
-                }
-            }
         }
     }
+}
+
+table {
+    border-spacing: 0;
+    margin: 1rem 0;
+}
+
+table,
+tr,
+th,
+td {
+    width: 100%;
+    border: 1px solid #f6f6c3;
+    border-spacing: 0;
+    text-align: center;
+}
+
+tr,
+td,
+th {
+    padding: 0.25rem 0.35rem;
+}
+
+button {
+    background-color: #f6f6c3;
+    color: #000;
+    font-weight: 800;
+    border-radius: 15px;
+    padding: 0.25rem 0.35rem;
+}
+
+input {
+    border-radius: 15px;
+    padding: 0.25rem 0.35rem;
 }

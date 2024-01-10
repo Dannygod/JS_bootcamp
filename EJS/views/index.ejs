@@ -12,9 +12,25 @@
             <h4>Home page</h4>
             <p>Hello, enter your name after the url</p>
             <p>ex: localhost:6060/Peter</p>
-            <% for(let i = 0; i < 100; i++) { %>
-                <p>第<%= i %>項</p>
-            <% } %>
+            <br>
+            <a href="/form">填寫表單↗</a>
+                <table>
+                    <tr>
+                        <td>name</td>
+                        <td>rate</td>
+                        <td>popularity</td>
+                        <td>trending</td>
+                    </tr>
+                    <% languages.forEach((languages)=>{ %>
+                    <tr>
+                        <td><%= languages.name %></td>
+                        <td><%= languages.rate %></td>
+                        <td><%= languages.popularity %></td>
+                        <td><%= languages.trending %></td>
+                    </tr>
+                    <% }) %>
+                </table>
+
         </div>
     </div>
 </body>
