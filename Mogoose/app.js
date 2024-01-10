@@ -44,12 +44,12 @@ const Jon = new Student({
 // });
 
 // find Jon in DB
-Student.updateOne(
-    {name: "David"}, 
-    {name: "Cindy"}
-).then((mes) =>{
-    console.log(mes);
-});
+// Student.updateOne(
+//     {name: "David"}, 
+//     {name: "Cindy"}
+// ).then((mes) =>{
+//     console.log(mes);
+// });
 // update merit plus 500 to every student
 // Student.updateMany({}, {$inc: {"scholarship.merit": 500}}).then((data) =>{
 //     console.log(data);
