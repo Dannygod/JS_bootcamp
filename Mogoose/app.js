@@ -44,6 +44,8 @@ const Kelly = new Student({
     scholarship: {
         merit: Math.floor(Math.random() * 1000) + 500,
         other: Math.floor(Math.random() * 500) + 100
+    }
+});
 const Jon = new Student({
     name: "Jon QQQQQQQQQQQQQQQQQQQQ",
     age: 18,
@@ -53,7 +55,7 @@ const Jon = new Student({
         other: 500
     }
 });
-// save Jon to DB
+    // save Jon to DB
 // Kelly.save()
 // .then(() =>{
 //     console.log("Kelly has been saved to DB");
