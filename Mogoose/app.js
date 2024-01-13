@@ -44,6 +44,13 @@ const Kelly = new Student({
     scholarship: {
         merit: Math.floor(Math.random() * 1000) + 500,
         other: Math.floor(Math.random() * 500) + 100
+const Jon = new Student({
+    name: "Jon QQQQQQQQQQQQQQQQQQQQ",
+    age: 18,
+    major: "CSIE",
+    scholarship: {
+        merit: 100000,
+        other: 500
     }
 });
 // save Jon to DB
@@ -65,6 +72,12 @@ const Kelly = new Student({
 //     console.log(mes);
 // });
 
+// Student.updateOne(
+//     {name: "David"}, 
+//     {name: "Cindy"}
+// ).then((mes) =>{
+//     console.log(mes);
+// });
 // update merit plus 500 to every student
 // Student.updateMany({}, {$inc: {"scholarship.merit": 500}}).then((data) =>{
 //     console.log(data);
