@@ -13,23 +13,31 @@ mongoose.connect('mongodb://localhost:27017/test', {
 })
 // define a schema
 const studentSchema = new mongoose.Schema({
-    name: String,
+    name: {String, maxlength: 20},
     age: Number,
-    major: String,
+    major: {String, enum: ["CS", "EE", "Math", "Physics"]},
     scholarship: {
-        merit: Number,
-        other: Number
+        merit: {
+            Number, 
+            min: 0, 
+            max: 10000
+        },
+        other: {
+            Number, 
+            min: 0, 
+            max: 10000
+        },
     },
 });
 // create a model for students
 const Student = mongoose.model("Student", studentSchema);
 // save a Jon to database
 const Jon = new Student({
-    name: "Jon",
+    name: "Jon QQQQQQQQQQQQQQQQQQQQ",
     age: 18,
-    major: "Computer Science",
+    major: "CSIE",
     scholarship: {
-        merit: 1000,
+        merit: 100000,
         other: 500
     }
 });
