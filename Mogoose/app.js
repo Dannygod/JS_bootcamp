@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const fs = require('fs');
 mongoose.connect('mongodb://localhost:27017/test', {
     useNewUrlParser: true, useUnifiedTopology: true
 })
@@ -44,13 +45,33 @@ studentSchema.methods.addAge = function(){
 };
 studentSchema.statics.setMerit = function(){
     return this.updateMany({}, {"scholarship.merit": 0});
-}
+};
+studentSchema.pre("save", async function(){
+    fs.writeFile("record.txt", "New student is created", (e) => {
+        if (e) throw e;
+    });
+});
 const Student = mongoose.model("Student", studentSchema);
 Student.find({}).then((data) =>{
     console.log(data);
 })
 .catch((err) =>{
     console.log(err);
+});
+// create a new student
+const Benson = new Student({
+    name: "Benson",
+    age: 22,
+    major: "Computer Science",
+    scholarship: {
+        merit: 1000,
+        other: 500
+    }
+});
+Benson.save().then((data) =>{
+    console.log("saved");
+}).catch((err) =>{
+    console.log("not saved");
 });
 // find total money
 // Student.find({}).then((data) =>{
