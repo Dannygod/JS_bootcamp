@@ -51,6 +51,11 @@ studentSchema.pre("save", async function(){
         if (e) throw e;
     });
 });
+studentSchema.post("save", async function(){
+    fs.writeFile("record.txt", "New student is created", (e) => {
+        if (e) throw e;
+    });
+});
 const Student = mongoose.model("Student", studentSchema);
 Student.find({}).then((data) =>{
     console.log(data);
