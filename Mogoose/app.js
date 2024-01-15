@@ -60,7 +60,6 @@ Student.find({}).then((data) =>{
 });
 // create a new student
 const Benson = new Student({
-    name: "Benson",
     age: 22,
     major: "Computer Science",
     scholarship: {
@@ -116,14 +115,14 @@ Benson.save().then((data) =>{
 // });
 
 // find all students
-// Student.find({}).then((data) =>{
-//     console.log(data);
-// });
-
-// delete Jon
-Student.findOneAndDelete({name: "Kelly"}).then((data) => {
+Student.find({}).then((data) =>{
     console.log(data);
 });
+
+// delete
+// Student.findOneAndDelete({name: "Kelly"}).then((data) => {
+//     console.log(data);
+// });
 app.use(express.static('public'));
 app.get('/', (req, res) =>{
     res.render('index.ejs');
