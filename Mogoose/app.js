@@ -47,24 +47,19 @@ studentSchema.statics.setMerit = function(){
     return this.updateMany({}, {"scholarship.merit": 0});
 };
 studentSchema.pre("save", async function(){
-    fs.writeFile("record.txt", "New student is created", (e) => {
+    fs.appendFile("record.txt", "New student is created", (e) => {
         if (e) throw e;
     });
 });
 studentSchema.post("save", async function(){
-    fs.writeFile("record.txt", "New student is created", (e) => {
+    fs.appendFile("record.txt", "\nNew student is created", (e) => {
         if (e) throw e;
     });
 });
 const Student = mongoose.model("Student", studentSchema);
-Student.find({}).then((data) =>{
-    console.log(data);
-})
-.catch((err) =>{
-    console.log(err);
-});
 // create a new student
 const Benson = new Student({
+    name: "Benson",
     age: 22,
     major: "Computer Science",
     scholarship: {
@@ -75,6 +70,9 @@ const Benson = new Student({
 Benson.save().then((data) =>{
     console.log("saved");
 }).catch((err) =>{
+    fs.appendFile("record.txt", "\nStudent is not saved", (e) => {
+        if (e) throw e;
+    });
     console.log("not saved");
 });
 // find total money
@@ -120,9 +118,9 @@ Benson.save().then((data) =>{
 // });
 
 // find all students
-Student.find({}).then((data) =>{
-    console.log(data);
-});
+// Student.find({}).then((data) =>{
+//     console.log(data);
+// });
 
 // delete
 // Student.findOneAndDelete({name: "Kelly"}).then((data) => {
