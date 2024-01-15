@@ -42,18 +42,28 @@ studentSchema.methods.addAge = function(){
     this.age -= 1;
     this.save({validateBeforeSave: false});
 };
+studentSchema.statics.setMerit = function(){
+    return this.updateMany({}, {"scholarship.merit": 0});
+}
 const Student = mongoose.model("Student", studentSchema);
-// find total money
 Student.find({}).then((data) =>{
-    data.forEach((oneStudent) =>{
-        oneStudent.addAge();
-        // console.log(`${oneStudent.name} has ${oneStudent.totalScholarship()}`);
-        console.log(`${oneStudent.name} is ${oneStudent.age}`);
-    });
-}).catch((e) =>{
-    console.log("error!!!!");
-    console.log(e);
+    console.log(data);
+})
+.catch((err) =>{
+    console.log(err);
 });
+// find total money
+// Student.find({}).then((data) =>{
+//     data.forEach((oneStudent) =>{
+//         oneStudent.addAge();
+//         // console.log(`${oneStudent.name} has ${oneStudent.totalScholarship()}`);
+//         console.log(`${oneStudent.name} is ${oneStudent.age}`);
+//     });
+// }).catch((e) =>{
+//     console.log("error!!!!");
+//     console.log(e);
+// });
+
 // save Jon to DB
 // Kelly.save()
 // .then(() =>{
