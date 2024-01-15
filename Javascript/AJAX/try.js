@@ -1,3 +1,5 @@
+const { set } = require("mongoose");
+
 function getData(name) {
     return new Promise((resolve, reject) =>{
         if(name == "Danny"){
@@ -13,36 +15,32 @@ function getData(name) {
 
 function getMovie(data) {
     return new Promise((resolve, reject) =>{
-        if(data.age > 10){
-            setTimeout(() => {
+        setTimeout(() => {
+            if(data.age > 10){
                 resolve({movie: "Harry Potter"})
-            }, 1000);
-        }
-        else if(data.age > 5){
-            setTimeout(() => {
+            }
+            else if(data.age > 5){
                 resolve({movie: "Frozen"})
-            }, 1000);
-        }
-        else{
-            reject(new Error("Your age is too young"));
-        }
+            }
+            else{
+                reject(new Error("Your age is too young"));
+            }
+        }, 1000);
     })
 }
 function getMoiveDetail(data){
     return new Promise((resolve, reject) =>{
-        if (data.movie == "Harry Potter"){
-            setTimeout(() => {
-                resolve({time: "5pm - 7pm"})
-            }, 1000);
-        }
-        else if(data.movie == "Frozen"){
-            setTimeout(() => {
-                resolve({time: "7pm - 9pm"})
-            }, 1000);
-        }
-        else{
-            reject(new Error("Invalid movie"));
-        }
+        setTimeout(() => {
+            if(data.movie == "Harry Potter"){
+                resolve({time: "5pm - 7pm"});
+            }
+            else if(data.movie == "Frozen"){
+                resolve({time: "7pm - 9pm"});
+            }
+            else{
+                reject(new Error("Invalid movie"));
+            }
+        }, 1000);
     });
 }
 async function showAll(){
