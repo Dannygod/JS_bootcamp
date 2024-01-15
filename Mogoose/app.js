@@ -103,7 +103,7 @@ Student.find({}).then((data) =>{
 Student.findOneAndDelete({name: "Kelly"}).then((data) => {
     console.log(data);
 });
-
+app.use(express.static('public'));
 app.get('/', (req, res) =>{
     res.render('index.ejs');
 })
