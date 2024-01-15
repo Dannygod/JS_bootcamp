@@ -35,27 +35,26 @@ const studentSchema = new mongoose.Schema({
     },
 });
 // create a model for students
+studentSchema.methods.totalScholarship = function(){
+    return this.scholarship.merit + this.scholarship.other;
+};
+studentSchema.methods.addAge = function(){
+    this.age -= 1;
+    this.save({validateBeforeSave: false});
+};
 const Student = mongoose.model("Student", studentSchema);
-// save a Jon to database
-const Kelly = new Student({
-    name: "Kelly",
-    age: Math.floor(Math.random() * 10) + 18,
-    major: "Computer Science",
-    scholarship: {
-        merit: Math.floor(Math.random() * 1000) + 500,
-        other: Math.floor(Math.random() * 500) + 100
-    }
+// find total money
+Student.find({}).then((data) =>{
+    data.forEach((oneStudent) =>{
+        oneStudent.addAge();
+        // console.log(`${oneStudent.name} has ${oneStudent.totalScholarship()}`);
+        console.log(`${oneStudent.name} is ${oneStudent.age}`);
+    });
+}).catch((e) =>{
+    console.log("error!!!!");
+    console.log(e);
 });
-const Jon = new Student({
-    name: "Jon QQQQQQQQQQQQQQQQQQQQ",
-    age: 18,
-    major: "CSIE",
-    scholarship: {
-        merit: 100000,
-        other: 500
-    }
-});
-    // save Jon to DB
+// save Jon to DB
 // Kelly.save()
 // .then(() =>{
 //     console.log("Kelly has been saved to DB");
