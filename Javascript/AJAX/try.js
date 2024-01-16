@@ -51,7 +51,8 @@ async function showAll(){
         console.log(data);
         console.log(movie);
         console.log(movieDetail);
-    }catch(err){
+    } 
+    catch(err){
         console.log("Error");
     }
 }
