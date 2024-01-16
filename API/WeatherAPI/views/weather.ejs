@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Weather</title>
+</head>
+<body>
+    <div class="content">
+        <div class="input">
+            <h1>查詢結果</h1>
+            <div id="city">
+                <% for(let i = 0; i < city.length; i++){ %>
+                <h2>城市: </h2>
+                <h3 id="cityName"><%= city[i] %></h3>
+                <h2>氣溫: </h2>
+                <h3 id="temp"><%= temp[i] %></h3>
+                <% } %>
+            </div>
+        </div>
+        <div id="weather"></div>
+    </div>
+</body>
+<script src="app.js"></script>
+</html>
