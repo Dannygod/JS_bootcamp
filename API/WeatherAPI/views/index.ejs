@@ -8,20 +8,28 @@
 </head>
 <body>
     <div class="content">
-        <div class="input">
-            <form action="" method="GET">
-                <h1>查詢天氣</h1>
-                <!-- <label for="city">城市:</label>
-                <input id="city" name="city" type="text">
-                <label for="lat">經度:</label>
-                <input id="lat" name="lat" type="number" value="51" step="0.1" max="180" min="-180">
-                <label for="lon">緯度:</label>
-                <input id="lon" name="lon" type="number" value="0" step="0.1" max="90" min="-90">
-                <button type="submit">查詢</button> -->
+        <div class="input" >
+            <div class="title">查詢天氣</div>
+            <form>
+                <input type="text" id="weatherSearch" placeholder="輸入國家/城市"/>
+                <input type="submit" hidden />
             </form>
         </div>
         <div id="weather"></div>
     </div>
 </body>
-<script src="app.js"></script>
+<script>
+    const cityForm = document.querySelector('form');
+    const weatherSearchInput = document.querySelector('#weatherSearch');
+    cityForm.addEventListener('submit', function(event) {
+            // 阻止預設的 submit 行為
+            event.preventDefault();
+
+            // 獲取輸入的城市名稱
+            const city = weatherSearchInput.value;
+
+            // 使用 JavaScript 來導航到帶有城市名稱的 URL
+            window.location.href = `http://localhost:3000/${city}`;
+        });
+</script>
 </html>

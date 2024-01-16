@@ -24,6 +24,33 @@ div.content {
     justify-content: center;
     align-items: center;
 
+    div.title{
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        width: 100%;
+        margin: 0.5rem;
+    }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            input{
+                padding: 0.5rem;
+                border-radius: 15px;
+                border: 2px solid rgb(0, 64, 64);
+                margin: 0.5rem;
+                
+            }
+        }
+    }
+
+div#city{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     table,
     tr,
     td {
@@ -35,5 +62,13 @@ div.content {
     tr,
     td {
         padding: 1rem;
+    }
+    a{
+        margin: 0.5rem;
+        background-color: rgb(0, 64, 64);
+        text-decoration: none;
+        color: rgb(245, 245, 245);
+        padding: 1rem 2rem;
+        border-radius: 15px;
     }
 }
