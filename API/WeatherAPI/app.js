@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
+const APIKey = process.env.API_KEY;
 // const fetch = require("node-fetch");
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -8,7 +10,6 @@ app.get("/", (req, res) => {
 });
 app.get("/:city", async (req, res) => {
     try {
-        let APIKey = "b141958406551710cb8bfb968718caf5";
         let {city} = req.params;
         let url2 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
         const data = await fetch(url2)
