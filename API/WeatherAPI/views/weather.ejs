@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="style/style.css">
     <title>Weather</title>
 </head>
 <body>
     <div class="content">
-        <div class="input">
-            <h1>查詢結果</h1>
-            <div id="city">
-                <% for(let i = 0; i < city.length; i++){ %>
-                <h2>城市: </h2>
-                <h3 id="cityName"><%= city[i] %></h3>
-                <h2>氣溫: </h2>
-                <h3 id="temp"><%= temp[i] %></h3>
-                <% } %>
-            </div>
+        <h1>查詢結果</h1>
+        <div id="city">
+            <table id="weatherInfo">
+                <tr>
+                    <td>城市</td>
+                    <td><%= djs.name %></td>
+                </tr>
+                <tr>
+                    <td>經度</td>
+                    <td><%= djs.coord.lon %></td>
+                </tr>
+                <tr>
+                    <td>緯度</td>
+                    <td><%= djs.coord.lat %></td>
+                </tr>
+                <tr>
+                    <td>天氣</td>
+                    <td><%= djs.weather[0].main %></td>
+                </tr>
+                <tr>
+                    <td>天氣描述</td>
+                    <td><%= djs.weather[0].description %></td>
+                </tr>
+                <tr>
+                    <td>溫度</td>
+                    <td><%= temp %></td>
+                </tr>
+            </table>
         </div>
-        <div id="weather"></div>
     </div>
 </body>
-<script src="app.js"></script>
 </html>

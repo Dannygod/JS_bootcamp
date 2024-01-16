@@ -18,44 +18,18 @@ h1 {
 
 div.content {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-div.content div.input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
+div.content table,
+div.content tr,
+div.content td {
+  border: 2px solid black;
+  border-collapse: collapse;
 }
-div.content div.input label {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-div.content div.input input {
-  width: 100%;
-  height: 3rem;
-  border: none;
-  border-radius: 15px;
-  outline: none;
-  font-size: 1.5rem;
-  padding-left: 1rem;
-  margin-bottom: 1rem;
-}
-div.content div#weather {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 45%;
-  background: rgb(195, 198, 253);
-  padding: 2rem;
-  border-radius: 20px;
-  font-size: 2rem;
-  margin-top: 2rem;
-  border: 3px solid rgb(0, 4, 71);
+div.content tr,
+div.content td {
+  padding: 1rem;
 }/*# sourceMappingURL=style.css.map */
