@@ -25,40 +25,33 @@ mongoose
     console.log("Connection failed.");
     console.log(e);
   });
-
-app.get("/", (req, res) => {
-  res.send("This is homepage.");
-});
-
+// GET method
 app.get("/students", async (req, res) => {
   try {
     let data = await Student.find();
-    res.render("students.ejs", { data });
+    res.send(data);
   } catch {
-    res.send("Error with finding data.");
+    res.send({ error: "Error with finding data." });
   }
 });
-
-app.get("/students/insert", (req, res) => {
-  res.render("studentInsert.ejs");
-});
-
 app.get("/students/:id", async (req, res) => {
   let { id } = req.params;
   try {
     let data = await Student.findOne({ id });
     if (data !== null) {
-      res.render("studentPage.ejs", { data });
+      res.send(data);
     } else {
-      res.send("Cannot find this student. Please enter a valid id.");
+      res.status(404);
+      res.send({ error: "Cannot find this student. Please enter a valid id." });
     }
   } catch (e) {
-    res.send("Error!!");
+    res.status(404);
+    res.send({ error: "Error with finding data." });
     console.log(e);
   }
 });
-
-app.post("/students/insert", (req, res) => {
+// POST method
+app.post("/students", (req, res) => {
   let { id, name, age, merit, other } = req.body;
   let newStudent = new Student({
     id,
@@ -69,31 +62,15 @@ app.post("/students/insert", (req, res) => {
   newStudent
     .save()
     .then(() => {
-      console.log("Student accepted.");
-      res.render("accept.ejs");
+      res.send("Student accepted.");
     })
     .catch((e) => {
-      console.log("Student not accepted.");
-      console.log(e);
-      res.render("reject.ejs");
+      res.status(404);
+      res.send(e);
     });
 });
-
-app.get("/students/edit/:id", async (req, res) => {
-  let { id } = req.params;
-  try {
-    let data = await Student.findOne({ id });
-    if (data !== null) {
-      res.render("edit.ejs", { data });
-    } else {
-      res.send("Cannot find student.");
-    }
-  } catch {
-    res.send("Error!");
-  }
-});
-
-app.put("/students/edit/:id", async (req, res) => {
+// PUT method
+app.put("/students/:id", async (req, res) => {
   let { id, name, age, merit, other } = req.body;
   try {
     let d = await Student.findOneAndUpdate(
@@ -104,12 +81,51 @@ app.put("/students/edit/:id", async (req, res) => {
         runValidators: true,
       }
     );
-    res.redirect(`/students/${id}`);
-  } catch {
-    res.render("reject.ejs");
+    res.send("Updated successfully.");
+  } catch(e){
+    res.status(404);
+    res.send(e);
   }
 });
+class newData {
+  constructor(){}
+  setProperty(key, value){
+    if(key == "merit" || key == "other"){
+      this[`scholarship.${key}`] = value;
+    }
+    else{
+      this[key] = value;
+    }
+  }
+}
+// PATCH method
+app.patch("/students/:id", async (req, res) => {
+  let { id } = req.params;
+  let { name, age, merit, other } = req.body;
+  let newObj = new newData();
+  console.log(req.body);
+  for (let property in req.body) {
+    newObj.setProperty(property, req.body[property]); // setProperty(key, value)
+  }
+  console.log(newObj);
+  try {
+    let d = await Student.findOneAndUpdate(
+      { id },
+      newObj,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.send(d);
+    // res.send("Updated successfully.");
+  } catch(e){
+    res.status(404);
+    res.send(e);
+  } 
+});
 
+// DELETE method
 app.delete("/students/delete/:id", (req, res) => {
   let { id } = req.params;
   Student.deleteOne({ id })
