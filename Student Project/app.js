@@ -7,7 +7,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
-mongoose.connect("mongodb://localhost:27017/studentDB", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://localhost:27017/studentDB")
 .then(()=>{
     console.log("Connected to DB");
 })
@@ -19,9 +19,14 @@ app.get('/', (req, res) =>{
     res.render('index.ejs');
 })
 app.get('/student', async (req, res) =>{
-    const data = await Student.find();
-    console.log(data);
-    res.render('student.ejs', {data});
+    try{
+        const data = await Student.find();
+        console.log(data);
+        res.render('student.ejs', {data})
+    }
+    catch{
+        res.send("Error fetching data");
+    }
 })
 app.get('/student/add', (req, res) =>{
     res.render('studentForm.ejs');
@@ -42,6 +47,17 @@ app.post("/student/add", (req, res)=>{
         res.render("reject.ejs");
     });
 });
+app.get('/student/:id', async (req, res) =>{
+    const {id} = req.params;
+    try{
+        const data = await Student.findOne({id});
+        console.log(data);
+        res.render('studentDetails.ejs', {data});
+    }
+    catch{
+        res.send("Error fetching data");
+    }
+})
 app.get('/*', (req, res) =>{
     res.status(404);
     res.render('404.ejs');

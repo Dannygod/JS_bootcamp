@@ -9,9 +9,7 @@
 <body>
     <ul>
         <% data.forEach((d)=>{ %>
-        <li>
-            <%= d.name %>
-        </li>
+        <li><a href="/student/<%= d.id %>"><%= d.name %></a></li>
         <% }) %>
     </ul>
 </body>

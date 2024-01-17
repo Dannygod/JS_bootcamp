@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.name %></title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    <table>
+        <tr>
+            <td>編號</td>
+            <td><%= data.id %></td>
+        </tr>
+        <tr>
+            <td>姓名</td>
+            <td><%= data.name %></td>
+        </tr>
+        <tr>
+            <td>年齡</td>
+            <td><%= data.age %></td>
+        </tr>
+        <tr>
+            <td>獎學金</td>
+            <td><%= data.scholarship.merit %></td>
+        </tr>
+        <tr>
+            <td>其他獎學金</td>
+            <td><%= data.scholarship.other %></td>
+        </tr>
+        <tr>
+            <td>總獎學金</td>
+            <td><%= data.scholarship.merit + data.scholarship.other %></td>
+        </tr>
+    </table>
+    <a href="/student">回到學生列表</a>
+</body>
+</html>
