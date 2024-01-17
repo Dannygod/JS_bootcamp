@@ -91,7 +91,26 @@ app.put('/student/edit/:id', async (req, res) =>{
         res.render("reject.ejs");
     }
 });
+app.delete("/student/delete/:id", async (req, res)=>{
+    const {id} = req.params;
+    try{
+        let d = await Student.findOneAndDelete({id})
+        if (d === null){
+            res.send("No data found");
+            return;
+        }
+        else{
+            res.redirect('/student');
+            // res.send(`Student id ${id} deleted`);
+        }
+    }
+    catch(e){
+        res.send("Error deleting data");
+        console.log("Delete failed");
+        console.log(e);
+    }
 
+});
 app.get('/student/:id', async (req, res) =>{
     const {id} = req.params;
     try{

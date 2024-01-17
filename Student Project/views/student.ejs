@@ -9,7 +9,15 @@
 <body>
     <ul>
         <% data.forEach((d)=>{ %>
-        <li><a href="/student/<%= d.id %>"><%= d.name %></a></li>
+        <li><a href="/student/<%= d.id %>"><%= d.name %></a></li> 
+        <div class="buttonFlex">
+            <form action="" method="">
+                <button type="submit"><a href="/student/edit/<%= d.id %>">編輯</a></button>
+            </form>
+            <form action="/student/delete/<%= d.id %>?_method=DELETE" method="POST">
+                <button type="submit">刪除</button>
+            </form>
+        </div>
         <% }) %>
     </ul>
 </body>
