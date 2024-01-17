@@ -96,12 +96,13 @@ app.delete("/student/delete/:id", async (req, res)=>{
     try{
         let d = await Student.findOneAndDelete({id})
         if (d === null){
+            console.log(`No data found`);
             res.send("No data found");
             return;
         }
         else{
+            console.log(`Student id ${id} deleted`);
             res.redirect('/student');
-            // res.send(`Student id ${id} deleted`);
         }
     }
     catch(e){

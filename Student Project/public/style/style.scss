@@ -53,12 +53,20 @@ th {
 }
 
 button {
-    margin: 1rem 0;
-    background-color: #f6f6c3;
+    margin: 1rem 0.5rem;
+    background-color: #c3f6d2;
     color: #000;
     font-weight: 800;
     border-radius: 15px;
     padding: 0.25rem 0.35rem;
+
+    &.delete {
+        background-color: #f6d2d2;
+
+        a {
+            z-index: -1;
+        }
+    }
 }
 
 label {
@@ -82,5 +90,6 @@ div.buttonFlex {
 button {
     a {
         color: #000000;
+        padding: 0.5rem 0.6rem;
     }
 }

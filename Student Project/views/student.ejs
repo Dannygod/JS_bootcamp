@@ -15,10 +15,11 @@
                 <button type="submit"><a href="/student/edit/<%= d.id %>">編輯</a></button>
             </form>
             <form action="/student/delete/<%= d.id %>?_method=DELETE" method="POST">
-                <button type="submit">刪除</button>
+                <button class="delete" type="submit">刪除</button>
             </form>
         </div>
         <% }) %>
     </ul>
+    <button><a href="/student/add">新增學生</a></button>
 </body>
 </html>
