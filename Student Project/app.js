@@ -3,9 +3,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const { default: mongoose } = require('mongoose');
 const Student = require('./models/student');
+const methodOverride = require("method-override");
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://localhost:27017/studentDB")
 .then(()=>{
@@ -21,8 +24,13 @@ app.get('/', (req, res) =>{
 app.get('/student', async (req, res) =>{
     try{
         const data = await Student.find();
-        console.log(data);
-        res.render('student.ejs', {data})
+        if(data !== null){
+            console.log(data);
+            res.render('student.ejs', {data});
+        }
+        else{
+            res.send("No data found");
+        }
     }
     catch{
         res.send("Error fetching data");
@@ -33,7 +41,7 @@ app.get('/student/add', (req, res) =>{
 })
 app.post("/student/add", (req, res)=>{
     const {id, name, age, merit, other} = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     // res.send("Thanks for posting");
     const newStudent = new Student({id, name, age, scholarship: {merit, other},
     });
@@ -47,6 +55,43 @@ app.post("/student/add", (req, res)=>{
         res.render("reject.ejs");
     });
 });
+app.get('/student/edit/:id', async (req, res) =>{
+    const {id} = req.params;
+    try{
+        const data = await Student.findOne({id});
+        if(data !== null){
+            res.render('studentEdit.ejs', {data});
+        }
+        else{
+            res.send("No data found");
+        }
+    }
+    catch{
+        res.send("Error fetching data");
+    }
+});
+
+app.put('/student/edit/:id', async (req, res) =>{
+    try{
+        const {id} = req.params;
+        const {name, age, merit, other} = req.body;
+        console.log(req.body);
+        let d = await Student.findOneAndUpdate({id}, {
+            id, 
+            name, 
+            age, 
+            scholarship: {merit, other}
+        },{
+            new: true, 
+            runValidators:true
+        });
+        res.redirect(`/student/${id}`);
+    }
+    catch{
+        res.render("reject.ejs");
+    }
+});
+
 app.get('/student/:id', async (req, res) =>{
     const {id} = req.params;
     try{
