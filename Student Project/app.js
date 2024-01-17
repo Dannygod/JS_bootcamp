@@ -18,22 +18,28 @@ mongoose.connect("mongodb://localhost:27017/studentDB", {useNewUrlParser: true, 
 app.get('/', (req, res) =>{
     res.render('index.ejs');
 })
+app.get('/student', async (req, res) =>{
+    const data = await Student.find();
+    console.log(data);
+    res.render('student.ejs', {data});
+})
 app.get('/student/add', (req, res) =>{
     res.render('studentForm.ejs');
 })
 app.post("/student/add", (req, res)=>{
     const {id, name, age, merit, other} = req.body;
     console.log(req.body);
-    res.send("Thanks for posting");
+    // res.send("Thanks for posting");
     const newStudent = new Student({id, name, age, scholarship: {merit, other},
     });
     newStudent.save()
     .then(()=>{
         console.log("New student added");
+        res.render("accept.ejs");
     }).catch((e)=>{ 
         console.log("Error adding student");
         console.log(e);
-        res.status(500).send("Error adding student");
+        res.render("reject.ejs");
     });
 });
 app.listen(3000, ()=>{
