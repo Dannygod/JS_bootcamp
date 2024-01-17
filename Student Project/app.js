@@ -25,6 +25,16 @@ app.post("/student/add", (req, res)=>{
     const {id, name, age, merit, other} = req.body;
     console.log(req.body);
     res.send("Thanks for posting");
+    const newStudent = new Student({id, name, age, scholarship: {merit, other},
+    });
+    newStudent.save()
+    .then(()=>{
+        console.log("New student added");
+    }).catch((e)=>{ 
+        console.log("Error adding student");
+        console.log(e);
+        res.status(500).send("Error adding student");
+    });
 });
 app.listen(3000, ()=>{
     console.log('Server started on port 3000');
