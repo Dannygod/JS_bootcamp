@@ -42,6 +42,10 @@ app.post("/student/add", (req, res)=>{
         res.render("reject.ejs");
     });
 });
+app.get('/*', (req, res) =>{
+    res.status(404);
+    res.render('404.ejs');
+});
 app.listen(3000, ()=>{
     console.log('Server started on port 3000');
 })
