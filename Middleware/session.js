@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -5,9 +6,9 @@ const session = require("express-session");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser("thisIsMySecret"));
+app.use(cookieParser(process.env.SECRET));
 app.use(session({
-    secret: "Dannygodnavbarmaster",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
 }));
