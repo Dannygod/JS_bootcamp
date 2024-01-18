@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
+const flash = require("connect-flash");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true}));
@@ -12,8 +13,15 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+app.use(flash());
 app.get("/", (req, res) => {
-    res.send("home page");
+    req.flash("success_mes", "successfully logged in");
+    if(req.session.isVerified){
+        res.send("home page<br>" + req.flash("success_mes"));
+    }
+    else{
+        res.send("home page<br>");
+    }
 });
 app.get("/verified", (req, res) => {
     req.session.isVerified = true;
