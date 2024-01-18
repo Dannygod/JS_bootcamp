@@ -126,18 +126,27 @@ app.patch("/students/:id", async (req, res) => {
 });
 
 // DELETE method
-app.delete("/students/delete/:id", (req, res) => {
+app.delete("/students/delete/:id", async (req, res) => {
   let { id } = req.params;
-  Student.deleteOne({ id })
-    .then((meg) => {
-      console.log(meg);
-      res.send("Deleted successfully.");
-    })
-    .catch((e) => {
-      console.log(e);
-      res.send("Delete failed.");
-    });
+  try{
+    let mes = await Student.deleteOne({ id });
+    res.send(mes);
+    // res.send("Deleted successfully.");
+  }
+  catch(e){
+    res.status(404);
+    res.send(e);
+  }
 });
+app.delete("/students/deleteall", async (req, res) =>{
+  try{
+    await Student.deleteMany({});
+    res.send("Deleted all data successfully");
+  }catch(e){
+    res.send(e);
+    console.log("Delete failed");
+  }
+})
 
 app.get("/*", (req, res) => {
   res.status(404);
