@@ -22,9 +22,9 @@ app.get("/signup", (req, res) => {
     res.render("signup");
 });
 app.post("/signup", async (req, res, next) => {
-    console.log(req.body);
-    const { username, password } = req.body;
-    const newUser = new User({ username, userpassword: password });
+    // console.log(req.body);
+    const { username, userpassword } = req.body;
+    const newUser = new User({ username, userpassword});
     try{
         await newUser.save()
         .then(() =>{
@@ -44,7 +44,23 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res, next) => {
-    
+    const { username, userpassword } = req.body;
+    try{
+        let newUser = await User.findOne({username})
+        .then((user) =>{
+            if(user.userpassword === userpassword && username === user.username){
+                res.render("profile", {user: user});
+            }
+            else{
+                res.send("Wrong username or password!");
+            }})
+        .catch((e) =>{
+            console.log(e);
+            next(e);
+        });
+    } catch(e){
+        next(e);
+    }
 });    
 app.get("/", (req, res) => {
     res.render('index');
