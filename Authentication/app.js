@@ -26,9 +26,16 @@ app.get("/signup", (req, res) => {
 app.post("/signup", async (req, res, next) => {
     // console.log(req.body);
     const { username, userpassword } = req.body;
-    const newUser = new User({ username, userpassword });
-    // encrypt password
     try{
+        const newUser = new User({ username, userpassword });
+        // find same username
+        let user = await User.findOne({username});
+        console.log(user);
+        if(user){
+            res.send("Username already exists!");
+            return;
+        }
+    // encrypt password
         bcrypt.genSalt(saltRounds, async (err, salt) => {
             if(err) next(err);
             console.log(salt);
@@ -47,7 +54,6 @@ app.post("/signup", async (req, res, next) => {
                 });
             })
         })
-        
     } catch(e){
         next(e);
     }
@@ -58,13 +64,13 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res, next) => {
     const { username, userpassword } = req.body;
-    // check password
     try{
         let newUser = await User.findOne({username});
+        // check password
         bcrypt.compare(userpassword, newUser.userpassword, (err, result) =>{
             if(err) next(err);
             if(result){
-                res.render("profile", {user: user});
+                res.render("profile", {user: newUser});
             }
             else{
                 res.send("Wrong username or password!");
