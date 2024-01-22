@@ -1,11 +1,9 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const authRoute = require('./routes/auth-route');
-mongoose.connect("mongodb+srv://Cluster91855:ZEV1T1ZUUV91@cluster91855.jprvfen.mongodb.net/", {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true
+mongoose.connect(process.env.DB_CONNECT, {
 }).then(() => {
     console.log('Connected to mongo atlas');
 }).catch((err) => {
