@@ -1,12 +1,13 @@
-require('dotenv').config()
+require('dotenv').config();
 const passport = require('passport');
-const GoogleStrategy = require("passport-google-oauth20");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require('../models/user-model');
 
 passport.serializeUser((user, done) => {
     console.log("Serializing user now");
     done(null, user.id);
 });
+
 passport.deserializeUser((_id, done) => {
     console.log("Deserializing user now");
     User.findById({_id}).then((user) => {
@@ -23,19 +24,20 @@ passport.use(new GoogleStrategy({
     // passport callback function
     console.log(profile);
     User.findOne({googleID: profile.id})
-    .then((user) => {{
+    .then((user) => {
         if(user === null){
             const newUser = new User({
                 name: profile.displayName,
                 googleID: profile.id,
                 thumbnail: profile.photos[0].value,
-            }).save().then((newUser)=>{
+            });
+            newUser.save().then((newUser) => {
                 console.log("New User Created");
                 done(null, newUser);
-            })
+            });
         } else {
             console.log("User already exists");
             done(null, user);
         }
-    }})     
-}))
+    });
+}));
