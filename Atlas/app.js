@@ -6,6 +6,7 @@ const authRoute = require('./routes/auth-route');
 const profileRoute = require('./routes/profile-route');
 const passport = require('passport');
 const session = require("express-session");
+const flash = require("connect-flash");
 require("./config/passport");
 mongoose.connect(process.env.DB_CONNECT, {
 }).then(() => {
@@ -27,6 +28,12 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success_mes = req.flash("success_mes");
+    res.locals.error_mes = req.flash("error_mes");
+    next();
+});
 
 app.use('/auth', authRoute);
 app.use('/profile', profileRoute);

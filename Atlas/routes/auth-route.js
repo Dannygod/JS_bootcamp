@@ -11,17 +11,24 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res, next) => {
     console.log(req.body);
     let {name, email, password} = req.body;
+    // check if user exists
+    const emailExist = await User.findOne({email});
+    console.log(emailExist);
+    if(emailExist) {
+        req.flash("error_mes", "Email already exists");
+        res.redirect("/auth/signup");
+        return;
+    }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, 10);
-    console.log(hash);
+    // console.log(hash);
     password = hash;
     let newUser = new User({name, email, password});
     try{
         await newUser.save();
-        res.status(200).send({
-            message: "User created", 
-            saveOBJ: newUser
-        })
+        req.flash("success_mes", "User created. Please login");
+        res.redirect("/auth/login");
+
     } catch(err){
         next(err);
     }
