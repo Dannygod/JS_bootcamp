@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const User = require('./models/user-model');
 const authRoute = require('./routes/auth-route');
 const profileRoute = require('./routes/profile-route');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 require("./config/passport");
 mongoose.connect(process.env.DB_CONNECT, {
 }).then(() => {
@@ -18,6 +20,11 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/auth', authRoute);
 app.use('/profile', profileRoute);
+app.use(cookieSession({
+    keys: [process.env.COOKIE_KEY],
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res) => {
     res.render("index.ejs")
