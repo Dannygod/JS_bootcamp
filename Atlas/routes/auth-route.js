@@ -28,8 +28,8 @@ router.post("/signup", async (req, res, next) => {
         await newUser.save();
         req.flash("success_mes", "User created. Please login");
         res.redirect("/auth/login");
-
     } catch(err){
+        console.log(err);
         next(err);
     }
 });
