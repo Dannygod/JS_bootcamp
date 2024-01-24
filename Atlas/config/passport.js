@@ -23,6 +23,7 @@ passport.use(new GoogleStrategy({
 }, (accessToken, refreshToken, profile, done) => {
     // passport callback function
     console.log(profile);
+    // console.log(email);
     User.findOne({googleID: profile.id})
     .then((user) => {
         if(user === null){
