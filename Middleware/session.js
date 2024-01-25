@@ -15,7 +15,6 @@ app.use(session({
 }));
 app.use(flash());
 app.get("/", (req, res) => {
-    req.flash("success_mes", "successfully logged in");
     if(req.session.isVerified){
         res.send("home page<br>" + req.flash("success_mes"));
     }
@@ -25,6 +24,9 @@ app.get("/", (req, res) => {
 });
 app.get("/verified", (req, res) => {
     req.session.isVerified = true;
+    req.flash("success_mes", "successfully logged in");
+    // check flash message
+    console.log(req.flash("success_mes"));
     res.send("You are verified!");
 });
 app.get("/admin", (req, res) =>{
