@@ -1,4 +1,9 @@
 <!--  -->
+<% if (loginerr_mes != "") { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><%= loginerr_mes %></strong>
+    </div>
+<% } %>
 <!--break-->
 <% if (error_mes != "") { %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -12,4 +17,5 @@
         <strong><%= success_mes %></strong>
     </div>
 <% } %>
+
     

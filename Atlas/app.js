@@ -32,6 +32,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_mes = req.flash("success_mes");
     res.locals.error_mes = req.flash("error_mes");
+    res.locals.loginerr_mes = req.flash("loginerr_mes");
     next();
 });
 

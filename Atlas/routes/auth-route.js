@@ -2,8 +2,16 @@ const router = require("express").Router();
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/user-model");
+
 router.get("/login", (req, res) => {
     res.render("login", { user: req.user });
+});
+
+router.post('/login', passport.authenticate('local', { 
+    failureRedirect: '/auth/login', 
+    failureFlash: "Wrong username or password",
+    }), (req, res) => {
+    res.redirect("/profile");
 });
 router.get("/signup", (req, res) => {
     res.render("signup", { user: req.user });
@@ -29,8 +37,8 @@ router.post("/signup", async (req, res, next) => {
         req.flash("success_mes", "User created. Please login");
         res.redirect("/auth/login");
     } catch(err){
-        console.log(err);
-        next(err);
+        req.flash("success_mes", err.errors.name.properties.message);
+        res.redirect("/auth/signup");
     }
 });
 router.get("/logout", (req, res) => {

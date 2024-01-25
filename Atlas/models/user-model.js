@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         maxLength: 1024,
         minLength: 6,
-    }
-
+    },
 });
 module.exports = mongoose.model('User', userSchema);
