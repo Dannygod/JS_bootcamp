@@ -4,6 +4,8 @@ const Post = require("../models/post-model");
 const loginCheck = (req, res, next) => {
     // console.log(req.user);
     if(!req.isAuthenticated()){
+        req.session.returnTo = req.originalUrl;
+        console.log(req.session.returnTo);
         res.redirect("/auth/login");
     }
     else{

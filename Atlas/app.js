@@ -42,9 +42,6 @@ app.use('/profile', profileRoute);
 app.get('/', (req, res) => {
     res.render("index", { user: req.user });
 });
-app.get('/auth/login', (req, res) => {
-    res.render("login", { user: req.user });
-});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

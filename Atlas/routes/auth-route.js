@@ -11,7 +11,15 @@ router.post('/login', passport.authenticate('local', {
     failureRedirect: '/auth/login', 
     failureFlash: "Wrong username or password",
     }), (req, res) => {
-    res.redirect("/profile");
+        console.log(req.session.returnTo);
+        if(req.session.returnTo){
+            console.log("Redirecting to: " + req.session.returnTo);
+            let tmp = req.session.returnTo;
+            req.session.returnTo = null;
+            res.redirect(tmp);
+        } else {
+            res.redirect("/profile");
+        }
 });
 router.get("/signup", (req, res) => {
     res.render("signup", { user: req.user });
@@ -37,7 +45,7 @@ router.post("/signup", async (req, res, next) => {
         req.flash("success_mes", "User created. Please login");
         res.redirect("/auth/login");
     } catch(err){
-        req.flash("success_mes", err.errors.name.properties.message);
+        req.flash("error_mes", err.errors.name.properties.message);
         res.redirect("/auth/signup");
     }
 });
@@ -53,7 +61,15 @@ router.get("/google",
     }
 ));
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-    res.redirect("/profile");
+    console.log(req.session.returnTo);
+    if(req.session.returnTo){
+        console.log("Redirecting to: " + req.session.returnTo);
+        let tmp = req.session.returnTo;
+        req.session.returnTo = null;
+        res.redirect(tmp);
+    } else {
+        res.redirect("/profile");
+    }
 });
 
 module.exports = router;
