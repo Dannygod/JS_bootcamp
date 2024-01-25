@@ -9,5 +9,18 @@
     <h3>Hi, User <%= user.name %></h3>
     <img src="<%= user.thumbnail %>" alt="">
     <p><%= user.date %></p>
+
+    <br />
+    <br />
+    <br />
+    <% if (posts.length > 0) { %> <% for (let i = 0; i < posts.length; i++) { %>
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title"><%= posts[i].title %></h5>
+        <p class="card-text"><%= posts[i].content %></p>
+        <a href="#" class="btn btn-primary"><%= posts[i].date %> </a>
+      </div>
+    </div>
+    <% } %> <% } %>
   </body>
 </html>

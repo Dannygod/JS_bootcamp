@@ -26,6 +26,10 @@ passport.use(new LocalStrategy(
                 console.log("User not found");
                 return done(null, false);
             }
+            if (user.googleID) {
+                console.log("User found with googleID");
+                return done(null, false);
+            }
             const isValid = await bcrypt.compare(password, user.password);
             if (!isValid) {
                 console.log("Password not valid");
