@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #bdecff;
+  color: rgb(34, 1, 68);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serifs;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+div.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div.content div.title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 100%;
+  margin: 0.5rem;
+}
+div.content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div.content form input {
+  padding: 0.5rem;
+  border-radius: 15px;
+  border: 2px solid rgb(0, 64, 64);
+  margin: 0.5rem;
+}
+
+div#city {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div#city table,
+div#city tr,
+div#city td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+div#city tr,
+div#city td {
+  padding: 1rem;
+}
+
+a {
+  margin: 0.5rem;
+  background-color: rgb(165, 253, 253);
+  text-decoration: none;
+  color: rgb(245, 245, 245);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+}
+
+nav {
+  display: flex;
+}/*# sourceMappingURL=style.css.map */

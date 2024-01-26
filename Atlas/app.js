@@ -15,6 +15,7 @@ mongoose.connect(process.env.DB_CONNECT, {
     console.log(err);
 });
 // middleware
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,7 +33,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_mes = req.flash("success_mes");
     res.locals.error_mes = req.flash("error_mes");
-    res.locals.loginerr_mes = req.flash("loginerr_mes");
+    res.locals.error = req.flash("error");
     next();
 });
 
