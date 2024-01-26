@@ -7,6 +7,7 @@ const profileRoute = require('./routes/profile-route');
 const passport = require('passport');
 const session = require("express-session");
 const flash = require("connect-flash");
+const moment = require('moment');
 require("./config/passport");
 mongoose.connect(process.env.DB_CONNECT, {
 }).then(() => {

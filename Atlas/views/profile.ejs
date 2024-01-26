@@ -6,20 +6,17 @@
   </head>
   <body>
     <%- include ("partials/nav") %>
-    <h3>Hi, User <%= user.name %></h3>
-    <img src="<%= user.thumbnail %>" alt="">
-    <p><%= user.date %></p>
-    <br />
-    <br />
-    <br />
+    <div class="content">
+      <div class="title">Hi, User <%= user.name %></div>
+      <img src="<%= user.thumbnail %>" alt="">
+      <p><%= user.date %></p>
     <% if (posts.length > 0) { %> <% for (let i = 0; i < posts.length; i++) { %>
-    <div class="card" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title"><%= posts[i].title %></h5>
-        <p class="card-text"><%= posts[i].content %></p>
-        <a href="#" class="btn"><%= posts[i].date %> </a>
-      </div>
+    <div class="mycard">
+      <h5 class="card-title"><%= posts[i].title %></h5>
+      <div class=""><%= posts[i].content %></div>
+      <div class=""><%= posts[i].date %> </div>
     </div>
     <% } %> <% } %>
+  </div>
   </body>
 </html>
